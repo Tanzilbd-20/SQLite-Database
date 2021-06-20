@@ -37,6 +37,13 @@ public class MainActivity extends AppCompatActivity {
         db.addContact(topu);
         db.addContact(tanvir);*/
 
+        Contact c = db.getContact(10);
+      c.setName("Tanzil Ahmed");
+      c.setPhone_number("01127273755");
+      db.updateContact(c);
+
+
+
 
         List<Contact> contactList = db.getAllContact();
         for(Contact contact : contactList){
