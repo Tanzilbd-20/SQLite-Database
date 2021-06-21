@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseHandler db = new DatabaseHandler(this);
 
+        Log.d("CountContact", "onCreate: "+db.getCountContact());
+
         Contact tanzil = new Contact();
         tanzil.setName("Tanzil");
         tanzil.setPhone_number("37467823");
@@ -26,30 +28,38 @@ public class MainActivity extends AppCompatActivity {
         Contact shipan = new Contact("Shipan","4637845375");
         Contact shaheen = new Contact("Shaheen","463743756");
         Contact imran = new Contact("Imran","436545365");
-        Contact topu = new Contact("Imran","436545365");
-        Contact tanvir = new Contact("Imran","436545365");
+        Contact topu = new Contact("Topu","37436");
 
 
-    /*    db.addContact(tanzil);
+
+     /* db.addContact(tanzil);
         db.addContact(shipan);
         db.addContact(shaheen);
         db.addContact(imran);
-        db.addContact(topu);
-        db.addContact(tanvir);*/
+        db.addContact(topu);*/
 
-        Contact c = db.getContact(10);
-      c.setName("Tanzil Ahmed");
-      c.setPhone_number("01127273755");
-      db.updateContact(c);
+
+
+      /*Contact deleteContact = db.getContact(3);
+      db.deleteContact(deleteContact);*/
+      /* Contact update = db.getContact(1);
+
+       update.setName("Tanzil Ahmed");
+       update.setPhone_number("01127273755");
+
+       db.updateContact(update);*/
+
+
+
 
 
 
 
         List<Contact> contactList = db.getAllContact();
         for(Contact contact : contactList){
-            Log.d("MainActivity", "ID : "+contact.getId());
-            Log.d("MainActivity", "Name : "+contact.getName());
-            Log.d("MainActivity", "Phone Number : "+contact.getPhone_number());
+            Log.d("Information", "ID : "+contact.getId());
+            Log.d("Information", "Name : "+contact.getName());
+            Log.d("Information", "Phone Number : "+contact.getPhone_number());
         }
 
     }

@@ -30,7 +30,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //Create a table name -> (id , name , phone_number);
         String CREATE_CONTACT_TABLE = "CREATE TABLE " + Util.TABLE_NAME +"("
                 + Util.KEY_ID + " INTEGER PRIMARY KEY,"+Util.KEY_NAME+" TEXT,"
-                +Util.KEY_PHONE_NUMBER+" TEXT"+")";
+                + Util.KEY_PHONE_NUMBER+" TEXT"+")";
 
         sqLiteDatabase.execSQL(CREATE_CONTACT_TABLE);//Creating our table.
     }
@@ -104,6 +104,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Update Contact Method
     public int updateContact(Contact contact){
+
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -115,8 +116,26 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return db.update(Util.TABLE_NAME,values,Util.KEY_ID+"=?",
                 new String[]{String.valueOf(contact.getId())});
 
-
-
     }
+
+    //Delete single contact.
+    public void deleteContact(Contact contact){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Util.TABLE_NAME,Util.KEY_ID+"=?",
+                new String[]{String.valueOf(contact.getId())});
+
+        db.close();
+    }
+
+    //Count all contacts
+    public int getCountContact(){
+        String countContact = " SELECT * FROM "+Util.TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countContact,null);
+
+        return cursor.getCount();
+    }
+
+
 
 }
